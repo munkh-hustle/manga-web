@@ -298,7 +298,7 @@ function loadChapterPages(pages) {
         img.alt = `Page ${index + 1}`;
         img.className = 'manga-page';
         img.dataset.index = index;
-        img.loading = 'lazy';
+        img.loading = 'eager';
         
         // Auto-detect and apply orientation class
         img.onload = function() {
