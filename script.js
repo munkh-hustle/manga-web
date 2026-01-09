@@ -1,153 +1,13 @@
-// Manga Library Data
-const mangaLibrary = {
-    mangas: [
-        {
-            id: 1,
-            title: "Naruto: The Shinobi Chronicles",
-            author: "Masashi Kishimoto",
-            description: "The story of Naruto Uzumaki, a young ninja who seeks recognition from his peers and dreams of becoming the Hokage, the leader of his village.",
-            cover: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop",
-            status: "Completed",
-            chapters: 700,
-            lastUpdated: "2024-01-15",
-            chaptersList: [
-                {
-                    id: 1,
-                    title: "The Boy in the Village",
-                    number: "Chapter 1",
-                    locked: false,
-                    pages: [
-                        "https://via.placeholder.com/800x1200/FF6B6B/FFFFFF?text=Naruto+Ch1+Page+1",
-                        "https://via.placeholder.com/800x1200/4ECDC4/FFFFFF?text=Naruto+Ch1+Page+2",
-                        "https://via.placeholder.com/800x1200/FFE66D/000000?text=Naruto+Ch1+Page+3"
-                    ],
-                    date: "2023-01-01",
-                    code: null
-                },
-                {
-                    id: 2,
-                    title: "Team 7 Assembles",
-                    number: "Chapter 2",
-                    locked: true,
-                    pages: [
-                        "https://via.placeholder.com/800x1200/6A89CC/FFFFFF?text=Naruto+Ch2+Page+1",
-                        "https://via.placeholder.com/800x1200/78E08F/000000?text=Naruto+Ch2+Page+2"
-                    ],
-                    date: "2023-01-08",
-                    code: "NARUTO002"
-                }
-            ]
-        },
-        {
-            id: 2,
-            title: "One Piece: Grand Line",
-            author: "Eiichiro Oda",
-            description: "Follow Monkey D. Luffy and his pirate crew in search of the world's ultimate treasure known as 'One Piece' to become the next Pirate King.",
-            cover: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w-800&auto=format&fit=crop",
-            status: "Ongoing",
-            chapters: 1100,
-            lastUpdated: "2024-01-20",
-            chaptersList: [
-                {
-                    id: 1,
-                    title: "Romance Dawn",
-                    number: "Chapter 1",
-                    locked: false,
-                    pages: [
-                        "https://via.placeholder.com/800x1200/E55039/FFFFFF?text=One+Piece+Ch1+Page+1",
-                        "https://via.placeholder.com/800x1200/4A69BD/FFFFFF?text=One+Piece+Ch1+Page+2"
-                    ],
-                    date: "2023-01-01",
-                    code: null
-                },
-                {
-                    id: 2,
-                    title: "The First Crew Member",
-                    number: "Chapter 2",
-                    locked: true,
-                    pages: [
-                        "https://via.placeholder.com/800x1200/60A3BC/FFFFFF?text=One+Piece+Ch2+Page+1",
-                        "https://via.placeholder.com/800x1200/78E08F/000000?text=One+Piece+Ch2+Page+2"
-                    ],
-                    date: "2023-01-08",
-                    code: "ONEPIECE002"
-                }
-            ]
-        },
-        {
-            id: 3,
-            title: "Attack on Titan",
-            author: "Hajime Isayama",
-            description: "In a world where humanity lives inside cities surrounded by enormous walls due to the Titans, gigantic humanoid creatures who devour humans.",
-            cover: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop",
-            status: "Completed",
-            chapters: 139,
-            lastUpdated: "2024-01-10",
-            chaptersList: [
-                {
-                    id: 1,
-                    title: "To You, 2000 Years From Now",
-                    number: "Chapter 1",
-                    locked: false,
-                    pages: [
-                        "https://via.placeholder.com/800x1200/3C6382/FFFFFF?text=AoT+Ch1+Page+1",
-                        "https://via.placeholder.com/800x1200/F19066/000000?text=AoT+Ch1+Page+2"
-                    ],
-                    date: "2023-01-01",
-                    code: null
-                }
-            ]
-        },
-        {
-            id: 4,
-            title: "My Hero Academia",
-            author: "Kohei Horikoshi",
-            description: "In a world where most people have superpowers, Izuku Midoriya dreams of becoming a hero despite being born without powers.",
-            cover: "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop",
-            status: "Ongoing",
-            chapters: 400,
-            lastUpdated: "2024-01-25",
-            chaptersList: [
-                {
-                    id: 1,
-                    title: "Izuku Midoriya: Origin",
-                    number: "Chapter 1",
-                    locked: false,
-                    pages: [
-                        "https://via.placeholder.com/800x1200/B8E994/000000?text=MHA+Ch1+Page+1",
-                        "https://via.placeholder.com/800x1200/82CCDD/000000?text=MHA+Ch1+Page+2"
-                    ],
-                    date: "2023-01-01",
-                    code: null
-                }
-            ]
-        }
-    ]
-};
-
-// Sample pages for demonstration (replace with actual Google Photos links)
-const samplePages = {
-    // Naruto Chapters
-    "1_2": [
-        "https://via.placeholder.com/800x1200/6A89CC/FFFFFF?text=Naruto+Ch2+Page+1",
-        "https://via.placeholder.com/800x1200/78E08F/000000?text=Naruto+Ch2+Page+2",
-        "https://via.placeholder.com/800x1200/F8C291/000000?text=Naruto+Ch2+Page+3"
-    ],
-    // One Piece Chapters
-    "2_2": [
-        "https://via.placeholder.com/800x1200/60A3BC/FFFFFF?text=One+Piece+Ch2+Page+1",
-        "https://via.placeholder.com/800x1200/78E08F/000000?text=One+Piece+Ch2+Page+2",
-        "https://via.placeholder.com/800x1200/F8C291/000000?text=One+Piece+Ch2+Page+3"
-    ]
-};
-
 // App State
-let currentState = 'manga-list'; // 'manga-list', 'chapters', 'reader'
+let mangaLibrary = {
+    mangas: []
+};
+let currentState = 'manga-list';
 let currentManga = null;
 let currentChapter = null;
 let currentPage = 0;
 let zoomLevel = 1;
-let viewMode = 'single'; // 'single' or 'double'
+let viewMode = 'single';
 
 // DOM Elements
 const sections = {
@@ -156,22 +16,118 @@ const sections = {
     reader: document.getElementById('reader-section')
 };
 
+// Sample pages for demonstration (for unlocked chapters)
+const samplePages = {
+    // Tears on a Withered Flower
+    "1_2": [
+        "https://via.placeholder.com/800x1200/FF6B6B/FFFFFF?text=Tears+Ch2+Page+1",
+        "https://via.placeholder.com/800x1200/4ECDC4/FFFFFF?text=Tears+Ch2+Page+2",
+        "https://via.placeholder.com/800x1200/FFE66D/000000?text=Tears+Ch2+Page+3"
+    ],
+    "1_3": [
+        "https://via.placeholder.com/800x1200/6A89CC/FFFFFF?text=Tears+Ch3+Page+1",
+        "https://via.placeholder.com/800x1200/78E08F/000000?text=Tears+Ch3+Page+2"
+    ],
+    // Moonlit Chronicles
+    "2_2": [
+        "https://via.placeholder.com/800x1200/60A3BC/FFFFFF?text=Moonlit+Ch2+Page+1",
+        "https://via.placeholder.com/800x1200/78E08F/000000?text=Moonlit+Ch2+Page+2"
+    ],
+    // Samurai's Honor
+    "3_2": [
+        "https://via.placeholder.com/800x1200/3C6382/FFFFFF?text=Samurai+Ch2+Page+1",
+        "https://via.placeholder.com/800x1200/F19066/000000?text=Samurai+Ch2+Page+2"
+    ],
+    // Cyber Dreams
+    "4_2": [
+        "https://via.placeholder.com/800x1200/B8E994/000000?text=Cyber+Ch2+Page+1",
+        "https://via.placeholder.com/800x1200/82CCDD/000000?text=Cyber+Ch2+Page+2"
+    ]
+};
+
 // Initialize app
-document.addEventListener('DOMContentLoaded', () => {
-    loadMangaList();
-    setupEventListeners();
-    loadUnlockedChapters();
-    
-    // Check for saved theme
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
-        updateThemeButton();
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await loadMangaData();
+        setupEventListeners();
+        loadUnlockedChapters();
+        
+        // Check for saved theme
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+            updateThemeButton();
+        }
+    } catch (error) {
+        console.error('Failed to load manga data:', error);
+        showNotification('Failed to load manga data. Please refresh the page.', 'error');
+        // Load fallback data
+        loadFallbackData();
     }
 });
 
+async function loadMangaData() {
+    try {
+        const response = await fetch('data/manga-data.json');
+        if (!response.ok) {
+            throw new Error('Failed to load manga data');
+        }
+        const data = await response.json();
+        mangaLibrary = data;
+        loadMangaList();
+    } catch (error) {
+        throw error;
+    }
+}
+
+function loadFallbackData() {
+    mangaLibrary = {
+        mangas: [
+            {
+                id: 1,
+                title: "Tears on a Withered Flower",
+                author: "Author Unknown",
+                description: "A poignant story about love, loss, and redemption.",
+                cover: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&auto=format&fit=crop",
+                status: "Ongoing",
+                chapters: 10,
+                lastUpdated: "2024-01-25",
+                chaptersList: [
+                    {
+                        id: 1,
+                        title: "The Withered Blossom",
+                        number: "Chapter 1",
+                        locked: false,
+                        pages: [
+                            "https://lh3.googleusercontent.com/pw/AP1GczOwlELI0cpiiG9XIjzTaXMWFjR5Wab6N8b31Lf8YO6bPTKfESOtIFEgWgD4mbk-YhVXQ3RHUfa09F-ei9yAQ4K_rVvHY7MtUN43Ay5UvHLJupduF9VljSB_7pph8FniqfMqVmQVL5B4YWjSz0Cg3Rk=w53-h915-s-no-gm?authuser=0",
+                            "https://lh3.googleusercontent.com/pw/AP1GczONEzhK9K5--5S-77rNHgNcvGXtcJHdNKoCGoGPAHLUrQvJUkHCziCtCT5lmwOIrAJgWYQST_dAHadB0_4XKNGjo4vFIK1x6MVCozJHIvdv741Rt93iae8CkXnTiCxoZp0gS9qyR2X-wYAQuI_zlXc=w55-h915-s-no-gm?authuser=0"
+                        ],
+                        date: "2024-01-01",
+                        code: null
+                    }
+                ]
+            }
+        ]
+    };
+    loadMangaList();
+    showNotification('Loaded fallback data', 'info');
+}
+
 function loadMangaList() {
     const mangaGrid = document.getElementById('manga-grid');
+    if (!mangaGrid) return;
+    
     mangaGrid.innerHTML = '';
+    
+    if (mangaLibrary.mangas.length === 0) {
+        mangaGrid.innerHTML = `
+            <div class="no-manga">
+                <i class="fas fa-book-open fa-3x"></i>
+                <h3>No manga available</h3>
+                <p>Check back later for updates!</p>
+            </div>
+        `;
+        return;
+    }
     
     mangaLibrary.mangas.forEach(manga => {
         const unlockedChapters = getUnlockedChaptersCount(manga.id);
@@ -181,7 +137,7 @@ function loadMangaList() {
         mangaCard.dataset.id = manga.id;
         
         mangaCard.innerHTML = `
-            <img src="${manga.cover}" alt="${manga.title}" class="manga-cover">
+            <img src="${manga.cover}" alt="${manga.title}" class="manga-cover" loading="lazy">
             <div class="manga-info">
                 <div class="manga-title">
                     ${manga.title}
@@ -214,7 +170,10 @@ function getUnlockedChaptersCount(mangaId) {
 
 function openManga(mangaId) {
     const manga = mangaLibrary.mangas.find(m => m.id === mangaId);
-    if (!manga) return;
+    if (!manga) {
+        showNotification('Manga not found', 'error');
+        return;
+    }
     
     currentManga = manga;
     currentState = 'chapters';
@@ -288,6 +247,18 @@ function openChapter(mangaId, chapterId) {
         return;
     }
     
+    // Check if chapter has pages
+    if (!chapter.pages || chapter.pages.length === 0) {
+        // Try to load from sample pages
+        const key = `${mangaId}_${chapterId}`;
+        if (samplePages[key]) {
+            chapter.pages = samplePages[key];
+        } else {
+            showNotification('No pages available for this chapter', 'error');
+            return;
+        }
+    }
+    
     currentManga = manga;
     currentChapter = chapter;
     currentPage = 0;
@@ -318,6 +289,9 @@ function loadChapterPages(pages) {
         img.className = 'manga-page';
         img.style.transform = `scale(${zoomLevel})`;
         img.loading = 'lazy';
+        img.onerror = function() {
+            this.src = `https://via.placeholder.com/800x1200/FF6B6B/FFFFFF?text=Page+${index + 1}+Failed+to+Load`;
+        };
         mangaPages.appendChild(img);
     });
     
@@ -326,11 +300,10 @@ function loadChapterPages(pages) {
 }
 
 function updatePageInfo() {
-    const chapter = currentChapter;
-    if (!chapter) return;
+    if (!currentChapter || !currentChapter.pages) return;
     
     document.getElementById('page-info').textContent = 
-        `Page ${currentPage + 1} of ${chapter.pages.length}`;
+        `Page ${currentPage + 1} of ${currentChapter.pages.length}`;
     
     // Update button states
     const hasPrevChapter = currentChapter.id > 1;
@@ -344,10 +317,9 @@ function updatePageInfo() {
 
 function scrollToPage() {
     const mangaPages = document.getElementById('manga-pages');
-    const pageElement = mangaPages.children[currentPage];
-    if (pageElement) {
-        pageElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    if (!mangaPages.children[currentPage]) return;
+    
+    mangaPages.children[currentPage].scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function goBackToManga() {
@@ -393,12 +365,6 @@ function unlockChapter() {
                     localStorage.setItem(`unlockedChapters_${manga.id}`, JSON.stringify(unlocked));
                 }
                 
-                // Load sample pages if available
-                const key = `${manga.id}_${chapter.id}`;
-                if (samplePages[key] && chapter.pages.length === 0) {
-                    chapter.pages = samplePages[key];
-                }
-                
                 found = true;
                 
                 // If we're currently viewing this manga's chapters, reload them
@@ -412,9 +378,9 @@ function unlockChapter() {
                 showNotification(`${chapter.number} unlocked successfully!`, 'success');
                 codeInput.value = '';
                 
-                // If we're in manga list, open the manga
-                if (currentState === 'manga-list') {
-                    setTimeout(() => openManga(manga.id), 500);
+                // Auto-open the unlocked chapter if we're in its manga
+                if (currentManga && currentManga.id === manga.id) {
+                    setTimeout(() => openChapter(manga.id, chapter.id), 500);
                 }
                 
                 break;
@@ -477,7 +443,10 @@ function setupEventListeners() {
     });
     
     // Search functionality
-    document.getElementById('manga-search').addEventListener('input', searchManga);
+    const searchInput = document.getElementById('manga-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', searchManga);
+    }
 }
 
 function previousChapter() {
@@ -587,6 +556,8 @@ function showNotification(message, type = 'info') {
     const notification = document.getElementById('notification');
     const notificationText = document.getElementById('notification-text');
     
+    if (!notification || !notificationText) return;
+    
     notificationText.textContent = message;
     notification.className = 'notification';
     
@@ -604,10 +575,32 @@ function showNotification(message, type = 'info') {
 }
 
 function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric'
-    });
+    try {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    } catch (e) {
+        return dateString;
+    }
+}
+
+// Utility function to add manga dynamically (for testing/development)
+function addManga(newManga) {
+    if (!mangaLibrary.mangas.some(m => m.id === newManga.id)) {
+        mangaLibrary.mangas.push(newManga);
+        loadMangaList();
+        showNotification(`Added ${newManga.title}`, 'success');
+    }
+}
+
+// Export for debugging
+if (typeof window !== 'undefined') {
+    window.mangaApp = {
+        loadMangaData,
+        addManga,
+        mangaLibrary
+    };
 }

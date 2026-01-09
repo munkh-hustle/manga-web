@@ -1,0 +1,145 @@
+{
+  "mangas": [
+    {
+      "id": 1,
+      "title": "Tears on a Withered Flower",
+      "author": "Author Unknown",
+      "description": "A poignant story about love, loss, and redemption. Follow the journey of a young girl in a mystical world where flowers hold the secrets of the heart.",
+      "cover": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&auto=format&fit=crop",
+      "status": "Ongoing",
+      "chapters": 10,
+      "lastUpdated": "2024-01-25",
+      "chaptersList": [
+        {
+          "id": 1,
+          "title": "The Withered Blossom",
+          "number": "Chapter 1",
+          "locked": false,
+          "pages": [
+            "https://lh3.googleusercontent.com/pw/AP1GczOwlELI0cpiiG9XIjzTaXMWFjR5Wab6N8b31Lf8YO6bPTKfESOtIFEgWgD4mbk-YhVXQ3RHUfa09F-ei9yAQ4K_rVvHY7MtUN43Ay5UvHLJupduF9VljSB_7pph8FniqfMqVmQVL5B4YWjSz0Cg3Rk=w53-h915-s-no-gm?authuser=0",
+            "https://lh3.googleusercontent.com/pw/AP1GczONEzhK9K5--5S-77rNHgNcvGXtcJHdNKoCGoGPAHLUrQvJUkHCziCtCT5lmwOIrAJgWYQST_dAHadB0_4XKNGjo4vFIK1x6MVCozJHIvdv741Rt93iae8CkXnTiCxoZp0gS9qyR2X-wYAQuI_zlXc=w55-h915-s-no-gm?authuser=0"
+          ],
+          "date": "2024-01-01",
+          "code": null
+        },
+        {
+          "id": 2,
+          "title": "Petals in the Wind",
+          "number": "Chapter 2",
+          "locked": true,
+          "pages": [],
+          "date": "2024-01-08",
+          "code": "TEARS002"
+        },
+        {
+          "id": 3,
+          "title": "The Gardener's Secret",
+          "number": "Chapter 3",
+          "locked": true,
+          "pages": [],
+          "date": "2024-01-15",
+          "code": "TEARS003"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Moonlit Chronicles",
+      "author": "Sakura Tanaka",
+      "description": "In a world where the moon's phases grant magical powers, a young woman discovers her destiny is tied to an ancient lunar prophecy.",
+      "cover": "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&auto=format&fit=crop",
+      "status": "Ongoing",
+      "chapters": 15,
+      "lastUpdated": "2024-01-20",
+      "chaptersList": [
+        {
+          "id": 1,
+          "title": "First Quarter",
+          "number": "Chapter 1",
+          "locked": false,
+          "pages": [
+            "https://via.placeholder.com/800x1200/3C6382/FFFFFF?text=Moonlit+Ch1+Page+1",
+            "https://via.placeholder.com/800x1200/F19066/000000?text=Moonlit+Ch1+Page+2"
+          ],
+          "date": "2024-01-01",
+          "code": null
+        },
+        {
+          "id": 2,
+          "title": "Waxing Crescent",
+          "number": "Chapter 2",
+          "locked": true,
+          "pages": [],
+          "date": "2024-01-08",
+          "code": "MOON002"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Samurai's Honor",
+      "author": "Kenshin Watanabe",
+      "description": "A legendary samurai must choose between his sworn duty and his heart's desire in feudal Japan.",
+      "cover": "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&auto=format&fit=crop",
+      "status": "Completed",
+      "chapters": 45,
+      "lastUpdated": "2024-01-10",
+      "chaptersList": [
+        {
+          "id": 1,
+          "title": "The Way of the Sword",
+          "number": "Chapter 1",
+          "locked": false,
+          "pages": [
+            "https://via.placeholder.com/800x1200/B8E994/000000?text=Samurai+Ch1+Page+1",
+            "https://via.placeholder.com/800x1200/82CCDD/000000?text=Samurai+Ch1+Page+2"
+          ],
+          "date": "2024-01-01",
+          "code": null
+        },
+        {
+          "id": 2,
+          "title": "The Oath",
+          "number": "Chapter 2",
+          "locked": true,
+          "pages": [],
+          "date": "2024-01-08",
+          "code": "SAMURAI002"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Cyber Dreams",
+      "author": "Neo Tokyo",
+      "description": "In a dystopian future where reality and virtual worlds blur, a hacker discovers a conspiracy that could destroy both worlds.",
+      "cover": "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop",
+      "status": "Ongoing",
+      "chapters": 25,
+      "lastUpdated": "2024-01-25",
+      "chaptersList": [
+        {
+          "id": 1,
+          "title": "System Boot",
+          "number": "Chapter 1",
+          "locked": false,
+          "pages": [
+            "https://via.placeholder.com/800x1200/E55039/FFFFFF?text=Cyber+Ch1+Page+1",
+            "https://via.placeholder.com/800x1200/4A69BD/FFFFFF?text=Cyber+Ch1+Page+2"
+          ],
+          "date": "2024-01-01",
+          "code": null
+        },
+        {
+          "id": 2,
+          "title": "Digital Ghost",
+          "number": "Chapter 2",
+          "locked": true,
+          "pages": [],
+          "date": "2024-01-08",
+          "code": "CYBER002"
+        }
+      ]
+    }
+  ]
+}
