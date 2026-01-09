@@ -707,3 +707,248 @@ footer i {
         font-size: 2rem;
     }
 }
+
+.reader-container {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.manga-pages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 25px;
+    min-height: 80vh;
+}
+
+.manga-page {
+    max-width: 95%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+    object-fit: contain;
+    background-color: white;
+}
+
+/* For vertical manga pages */
+.manga-page.vertical {
+    max-width: 80%;
+    height: auto;
+}
+
+/* For horizontal manga pages */
+.manga-page.horizontal {
+    max-height: 80vh;
+    width: auto;
+}
+
+/* Page fit options */
+.page-fit-container {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+#fit-width, #fit-height, #fit-both {
+    padding: 8px 15px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+#fit-width.active, #fit-height.active, #fit-both.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Reading direction */
+.reading-direction {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+#direction-ltr, #direction-rtl {
+    padding: 8px 15px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#direction-ltr.active, #direction-rtl.active {
+    background-color: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+/* Reader tools improvements */
+.reader-tools {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.zoom-controls, .view-mode, .page-fit-container, .reading-direction {
+    display: flex;
+    gap: 8px;
+    background-color: var(--card-bg);
+    padding: 8px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+/* Image loading indicator */
+.image-loading {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+}
+
+.image-loading::before {
+    content: '';
+    border: 3px solid var(--border-color);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+/* Image error state */
+.image-error {
+    padding: 40px;
+    text-align: center;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+}
+
+.image-error i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.image-error p {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.image-error button {
+    padding: 8px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+}
+
+/* Auto-detect image orientation */
+.manga-page.auto-orientation {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+/* Better scrollbar for reader */
+.reader-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.reader-container::-webkit-scrollbar-track {
+    background: var(--card-bg);
+    border-radius: 4px;
+}
+
+.reader-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.reader-container::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Mobile reading improvements */
+@media (max-width: 768px) {
+    .manga-page {
+        max-width: 100%;
+        max-height: 85vh;
+    }
+    
+    .reader-tools {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .page-fit-container, .reading-direction {
+        justify-content: center;
+    }
+    
+    .reader-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .reader-controls button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Fullscreen mode */
+.reader.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    padding: 10px;
+    background-color: var(--bg-color);
+    margin: 0;
+    border-radius: 0;
+    overflow: auto;
+}
+
+.reader.fullscreen .manga-page {
+    max-height: 95vh;
+    max-width: 100%;
+}
+
+.reader.fullscreen .reader-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-color);
+    z-index: 100;
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.reader.fullscreen .page-controls {
+    position: sticky;
+    bottom: 0;
+    background-color: var(--bg-color);
+    z-index: 100;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+}

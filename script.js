@@ -8,6 +8,9 @@ let currentChapter = null;
 let currentPage = 0;
 let zoomLevel = 1;
 let viewMode = 'single';
+let imageFitMode = 'width'; // 'width', 'height', or 'both'
+let readingDirection = 'ltr'; // 'ltr' or 'rtl'
+let isFullscreen = false;
 
 // DOM Elements
 const sections = {
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadMangaData();
         setupEventListeners();
         loadUnlockedChapters();
+        initializeReaderSettings(); // Add this line
         
         // Check for saved theme
         if (localStorage.getItem('theme') === 'dark') {
@@ -60,7 +64,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Failed to load manga data:', error);
         showNotification('Failed to load manga data. Please refresh the page.', 'error');
-        // Load fallback data
         loadFallbackData();
     }
 });
@@ -282,22 +285,274 @@ function loadChapterPages(pages) {
     const mangaPages = document.getElementById('manga-pages');
     mangaPages.innerHTML = '';
     
+    // Create loading indicator
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'image-loading';
+    mangaPages.appendChild(loadingDiv);
+    
+    let loadedCount = 0;
+    
     pages.forEach((page, index) => {
-        const img = document.createElement('img');
+        const img = new Image();
         img.src = page;
         img.alt = `Page ${index + 1}`;
         img.className = 'manga-page';
-        img.style.transform = `scale(${zoomLevel})`;
+        img.dataset.index = index;
         img.loading = 'lazy';
-        img.onerror = function() {
-            this.src = `https://via.placeholder.com/800x1200/FF6B6B/FFFFFF?text=Page+${index + 1}+Failed+to+Load`;
+        
+        // Auto-detect and apply orientation class
+        img.onload = function() {
+            loadedCount++;
+            
+            // Remove loading indicator when first image loads
+            if (loadedCount === 1) {
+                const loadingDiv = mangaPages.querySelector('.image-loading');
+                if (loadingDiv) loadingDiv.remove();
+            }
+            
+            // Auto-detect orientation
+            if (this.naturalWidth > this.naturalHeight) {
+                this.classList.add('horizontal');
+            } else {
+                this.classList.add('vertical');
+            }
+            
+            // Apply current fit mode
+            applyImageFit(this);
+            
+            // Update button states when all images loaded
+            if (loadedCount === pages.length) {
+                updatePageInfo();
+                scrollToPage();
+            }
         };
+        
+        img.onerror = function() {
+            loadedCount++;
+            
+            // Remove loading indicator if it exists
+            const loadingDiv = mangaPages.querySelector('.image-loading');
+            if (loadingDiv) loadingDiv.remove();
+            
+            // Replace with error state
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'image-error';
+            errorDiv.innerHTML = `
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Failed to load page ${index + 1}</p>
+                <button onclick="retryLoadImage(${currentManga.id}, ${currentChapter.id}, ${index})">Retry</button>
+            `;
+            mangaPages.appendChild(errorDiv);
+        };
+        
         mangaPages.appendChild(img);
     });
     
-    updatePageInfo();
-    scrollToPage();
+    // If no images to load, remove loading indicator
+    if (pages.length === 0) {
+        const loadingDiv = mangaPages.querySelector('.image-loading');
+        if (loadingDiv) loadingDiv.remove();
+        
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'image-error';
+        errorDiv.innerHTML = `
+            <i class="fas fa-book-open"></i>
+            <p>No pages available for this chapter</p>
+        `;
+        mangaPages.appendChild(errorDiv);
+    }
 }
+
+function applyImageFit(imgElement) {
+    switch (imageFitMode) {
+        case 'width':
+            imgElement.style.maxWidth = '100%';
+            imgElement.style.maxHeight = 'none';
+            imgElement.style.width = 'auto';
+            imgElement.style.height = 'auto';
+            break;
+        case 'height':
+            imgElement.style.maxWidth = 'none';
+            imgElement.style.maxHeight = '90vh';
+            imgElement.style.width = 'auto';
+            imgElement.style.height = 'auto';
+            break;
+        case 'both':
+            imgElement.style.maxWidth = '100%';
+            imgElement.style.maxHeight = '90vh';
+            imgElement.style.width = 'auto';
+            imgElement.style.height = 'auto';
+            imgElement.style.objectFit = 'contain';
+            break;
+    }
+}
+
+// Set image fit mode
+function setImageFit(mode) {
+    imageFitMode = mode;
+    localStorage.setItem('imageFitMode', mode);
+    
+    // Update button states
+    document.getElementById('fit-width').classList.toggle('active', mode === 'width');
+    document.getElementById('fit-height').classList.toggle('active', mode === 'height');
+    document.getElementById('fit-both').classList.toggle('active', mode === 'both');
+    
+    // Apply to all images
+    const images = document.querySelectorAll('.manga-page');
+    images.forEach(img => {
+        if (img.complete) {
+            applyImageFit(img);
+        }
+    });
+}
+
+// Set reading direction
+function setReadingDirection(direction) {
+    readingDirection = direction;
+    localStorage.setItem('readingDirection', direction);
+    
+    // Update button states
+    document.getElementById('direction-ltr').classList.toggle('active', direction === 'ltr');
+    document.getElementById('direction-rtl').classList.toggle('active', direction === 'rtl');
+    
+    // Apply to manga pages container
+    const mangaPages = document.getElementById('manga-pages');
+    if (direction === 'rtl') {
+        mangaPages.style.flexDirection = 'column-reverse';
+    } else {
+        mangaPages.style.flexDirection = 'column';
+    }
+}
+
+// Toggle fullscreen mode
+function toggleFullscreen() {
+    const reader = document.getElementById('reader-section');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    
+    if (!isFullscreen) {
+        // Enter fullscreen
+        reader.classList.add('fullscreen');
+        fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        fullscreenBtn.title = 'Exit Fullscreen';
+        isFullscreen = true;
+        
+        // Hide other elements
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+    } else {
+        // Exit fullscreen
+        reader.classList.remove('fullscreen');
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        fullscreenBtn.title = 'Enter Fullscreen';
+        isFullscreen = false;
+        
+        // Show other elements
+        document.querySelector('header').style.display = 'block';
+        document.querySelector('footer').style.display = 'block';
+    }
+}
+
+// Keyboard shortcuts
+function handleKeyboardShortcuts(e) {
+    // Only handle shortcuts in reader mode
+    if (currentState !== 'reader') return;
+    
+    switch (e.key) {
+        case 'ArrowLeft':
+            if (readingDirection === 'ltr') {
+                previousPage();
+            } else {
+                nextPage();
+            }
+            e.preventDefault();
+            break;
+        case 'ArrowRight':
+            if (readingDirection === 'ltr') {
+                nextPage();
+            } else {
+                previousPage();
+            }
+            e.preventDefault();
+            break;
+        case 'ArrowUp':
+            previousChapter();
+            e.preventDefault();
+            break;
+        case 'ArrowDown':
+            nextChapter();
+            e.preventDefault();
+            break;
+        case 'f':
+        case 'F':
+            toggleFullscreen();
+            e.preventDefault();
+            break;
+        case '+':
+        case '=':
+            adjustZoom(0.1);
+            e.preventDefault();
+            break;
+        case '-':
+        case '_':
+            adjustZoom(-0.1);
+            e.preventDefault();
+            break;
+        case '0':
+            resetZoom();
+            e.preventDefault();
+            break;
+        case 'Escape':
+            if (isFullscreen) {
+                toggleFullscreen();
+            }
+            break;
+    }
+}
+
+// Retry loading failed image
+function retryLoadImage(mangaId, chapterId, pageIndex) {
+    const manga = mangaLibrary.mangas.find(m => m.id === mangaId);
+    if (!manga) return;
+    
+    const chapter = manga.chaptersList.find(c => c.id === chapterId);
+    if (!chapter || !chapter.pages[pageIndex]) return;
+    
+    // Remove error div
+    const errorDiv = document.querySelector('.image-error');
+    if (errorDiv) errorDiv.remove();
+    
+    // Create new image
+    const img = new Image();
+    img.src = chapter.pages[pageIndex];
+    img.alt = `Page ${pageIndex + 1}`;
+    img.className = 'manga-page';
+    img.dataset.index = pageIndex;
+    
+    img.onload = function() {
+        if (this.naturalWidth > this.naturalHeight) {
+            this.classList.add('horizontal');
+        } else {
+            this.classList.add('vertical');
+        }
+        applyImageFit(this);
+    };
+    
+    img.onerror = function() {
+        const mangaPages = document.getElementById('manga-pages');
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'image-error';
+        errorDiv.innerHTML = `
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Failed to load page ${pageIndex + 1}</p>
+            <button onclick="retryLoadImage(${mangaId}, ${chapterId}, ${pageIndex})">Retry</button>
+        `;
+        mangaPages.appendChild(errorDiv);
+    };
+    
+    const mangaPages = document.getElementById('manga-pages');
+    mangaPages.appendChild(img);
+}
+
 
 function updatePageInfo() {
     if (!currentChapter || !currentChapter.pages) return;
@@ -317,10 +572,53 @@ function updatePageInfo() {
 
 function scrollToPage() {
     const mangaPages = document.getElementById('manga-pages');
-    if (!mangaPages.children[currentPage]) return;
+    if (!mangaPages) return;
     
-    mangaPages.children[currentPage].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const pageElement = mangaPages.querySelector(`.manga-page[data-index="${currentPage}"]`);
+    if (pageElement) {
+        // Calculate scroll position based on reading direction
+        const container = document.querySelector('.reader-container') || mangaPages;
+        const containerHeight = container.clientHeight;
+        const pageTop = pageElement.offsetTop;
+        const pageHeight = pageElement.clientHeight;
+        
+        // Center the page vertically
+        const scrollPosition = pageTop - (containerHeight / 2) + (pageHeight / 2);
+        
+        if (container.scrollTo) {
+            container.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth'
+            });
+        } else {
+            container.scrollTop = scrollPosition;
+        }
+    }
 }
+
+function initializeReaderSettings() {
+    // Load saved settings from localStorage
+    const savedFitMode = localStorage.getItem('imageFitMode');
+    const savedDirection = localStorage.getItem('readingDirection');
+    
+    if (savedFitMode) {
+        imageFitMode = savedFitMode;
+    }
+    
+    if (savedDirection) {
+        readingDirection = savedDirection;
+    }
+    
+    // Update UI
+    setImageFit(imageFitMode);
+    setReadingDirection(readingDirection);
+}
+
+function saveReaderSettings() {
+    localStorage.setItem('imageFitMode', imageFitMode);
+    localStorage.setItem('readingDirection', readingDirection);
+}
+
 
 function goBackToManga() {
     currentState = 'manga-list';
@@ -447,6 +745,21 @@ function setupEventListeners() {
     if (searchInput) {
         searchInput.addEventListener('input', searchManga);
     }
+
+    // Page fit controls
+    document.getElementById('fit-width').addEventListener('click', () => setImageFit('width'));
+    document.getElementById('fit-height').addEventListener('click', () => setImageFit('height'));
+    document.getElementById('fit-both').addEventListener('click', () => setImageFit('both'));
+    
+    // Reading direction
+    document.getElementById('direction-ltr').addEventListener('click', () => setReadingDirection('ltr'));
+    document.getElementById('direction-rtl').addEventListener('click', () => setReadingDirection('rtl'));
+    
+    // Fullscreen toggle
+    document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', handleKeyboardShortcuts);
 }
 
 function previousChapter() {
