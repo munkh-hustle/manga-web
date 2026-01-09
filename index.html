@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -60,9 +62,9 @@
                         <button id="prev-btn"><i class="fas fa-arrow-left"></i> Previous Page</button>
                         <button id="next-btn">Next Page <i class="fas fa-arrow-right"></i></button>
                         <button id="next-chapter">Next Chapter <i class="fas fa-chevron-right"></i></button>
+                        <button id="fullscreen-btn" title="Toggle Fullscreen"><i class="fas fa-expand"></i></button>
                         <button id="close-reader"><i class="fas fa-times"></i> Close</button>
                     </div>
-                    <button id="fullscreen-btn" title="Toggle Fullscreen"><i class="fas fa-expand"></i></button>
                 </div>
                 <div class="manga-pages" id="manga-pages">
                     <!-- Manga pages will be loaded here -->
@@ -76,8 +78,18 @@
                             <button id="zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
                         </div>
                         <div class="view-mode">
-                            <button id="single-page" class="active" title="Single Page"><i class="fas fa-file"></i></button>
+                            <button id="single-page" class="active" title="Single Page"><i
+                                    class="fas fa-file"></i></button>
                             <button id="double-page" title="Double Page"><i class="fas fa-copy"></i></button>
+                        </div>
+                        <div class="page-fit-container">
+                            <button id="fit-width" class="active" title="Fit to Width">Fit Width</button>
+                            <button id="fit-height" title="Fit to Height">Fit Height</button>
+                            <button id="fit-both" title="Fit to Screen">Fit Both</button>
+                        </div>
+                        <div class="reading-direction">
+                            <button id="direction-ltr" class="active" title="Left to Right">LTR</button>
+                            <button id="direction-rtl" title="Right to Left">RTL</button>
                         </div>
                     </div>
                 </div>
@@ -99,4 +111,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
