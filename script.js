@@ -19,35 +19,6 @@ const sections = {
     reader: document.getElementById('reader-section')
 };
 
-// Sample pages for demonstration (for unlocked chapters)
-const samplePages = {
-    // Tears on a Withered Flower
-    "1_2": [
-        "https://via.placeholder.com/800x1200/FF6B6B/FFFFFF?text=Tears+Ch2+Page+1",
-        "https://via.placeholder.com/800x1200/4ECDC4/FFFFFF?text=Tears+Ch2+Page+2",
-        "https://via.placeholder.com/800x1200/FFE66D/000000?text=Tears+Ch2+Page+3"
-    ],
-    "1_3": [
-        "https://via.placeholder.com/800x1200/6A89CC/FFFFFF?text=Tears+Ch3+Page+1",
-        "https://via.placeholder.com/800x1200/78E08F/000000?text=Tears+Ch3+Page+2"
-    ],
-    // Moonlit Chronicles
-    "2_2": [
-        "https://via.placeholder.com/800x1200/60A3BC/FFFFFF?text=Moonlit+Ch2+Page+1",
-        "https://via.placeholder.com/800x1200/78E08F/000000?text=Moonlit+Ch2+Page+2"
-    ],
-    // Samurai's Honor
-    "3_2": [
-        "https://via.placeholder.com/800x1200/3C6382/FFFFFF?text=Samurai+Ch2+Page+1",
-        "https://via.placeholder.com/800x1200/F19066/000000?text=Samurai+Ch2+Page+2"
-    ],
-    // Cyber Dreams
-    "4_2": [
-        "https://via.placeholder.com/800x1200/B8E994/000000?text=Cyber+Ch2+Page+1",
-        "https://via.placeholder.com/800x1200/82CCDD/000000?text=Cyber+Ch2+Page+2"
-    ]
-};
-
 // Initialize app
 document.addEventListener('DOMContentLoaded', async () => {
     try {
