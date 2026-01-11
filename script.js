@@ -234,10 +234,16 @@ function loadChapterPages(pages) {
     let loadedCount = 0;
     const totalPages = pages.length;
     
+    // Add a class to indicate loading is happening
+    mangaPages.classList.add('loading-pages');
+    
     pages.forEach((page, index) => {
         // Create container for each page
         const pageContainer = document.createElement('div');
         pageContainer.className = 'manga-page-container';
+        pageContainer.style.margin = '0';
+        pageContainer.style.padding = '0';
+        pageContainer.style.minHeight = 'auto';
         
         const img = new Image();
         img.src = page;
@@ -245,6 +251,8 @@ function loadChapterPages(pages) {
         img.className = 'manga-page';
         img.dataset.index = index;
         img.loading = 'lazy';
+        img.style.margin = '0 auto';
+        img.style.display = 'block';
         
         img.onload = function() {
             loadedCount++;
@@ -285,9 +293,15 @@ function loadChapterPages(pages) {
                 }
             }
             
+            // Ensure image doesn't have any problematic margins
+            this.style.marginTop = '0';
+            this.style.marginBottom = '0';
+            this.style.padding = '0';
+            
             applyReadingDirection();
             
             if (loadedCount === totalPages) {
+                mangaPages.classList.remove('loading-pages');
                 updatePageInfo();
                 scrollToPage();
             }

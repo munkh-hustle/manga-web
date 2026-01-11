@@ -881,3 +881,28 @@ footer i {
 .no-manga p {
     color: var(--text-tertiary);
 }
+
+/* Prevent image overlap */
+.manga-page {
+    display: block !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    position: relative !important;
+    z-index: 1;
+}
+
+/* Ensure containers don't overlap */
+.manga-page-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* When loading pages, show a slight visual feedback */
+.loading-pages .manga-page-container {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.loading-pages .manga-page-container:last-child {
+    opacity: 1;
+}
