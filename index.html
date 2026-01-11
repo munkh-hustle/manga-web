@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manga Reader</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Add this to the <head> section of index.html -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <meta name="theme-color" content="#0a0a0f">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
         <header>
@@ -24,11 +18,6 @@
                 <div class="code-input-container">
                     <input type="text" id="code-input" placeholder="Enter chapter code...">
                     <button id="unlock-btn"><i class="fas fa-unlock"></i> Unlock Chapter</button>
-                </div>
-                <div class="theme-toggle">
-                    <button id="theme-toggle">
-                        <i class="fas fa-moon"></i> Dark Mode
-                    </button>
                 </div>
                 <button id="back-to-manga" class="back-btn" style="display: none;">
                     <i class="fas fa-arrow-left"></i> Back to Manga
@@ -66,8 +55,6 @@
                     <h2 id="chapter-title">Chapter 1</h2>
                     <div class="reader-controls">
                         <button id="prev-chapter"><i class="fas fa-chevron-left"></i> Previous Chapter</button>
-                        <button id="prev-btn"><i class="fas fa-arrow-left"></i> Previous Page</button>
-                        <button id="next-btn">Next Page <i class="fas fa-arrow-right"></i></button>
                         <button id="next-chapter">Next Chapter <i class="fas fa-chevron-right"></i></button>
                         <button id="fullscreen-btn" title="Toggle Fullscreen"><i class="fas fa-expand"></i></button>
                         <button id="close-reader"><i class="fas fa-times"></i> Close</button>
@@ -79,36 +66,15 @@
                 <div class="page-controls">
                     <span id="page-info">Page 1 of 10</span>
                     <div class="reader-tools">
-                        <div class="zoom-controls">
-                            <button id="zoom-out" title="Zoom Out"><i class="fas fa-search-minus"></i></button>
-                            <button id="zoom-reset" title="Reset Zoom"><i class="fas fa-expand-alt"></i></button>
-                            <button id="zoom-in" title="Zoom In"><i class="fas fa-search-plus"></i></button>
-                        </div>
-                        <div class="view-mode">
-                            <button id="single-page" class="active" title="Single Page"><i
-                                    class="fas fa-file"></i></button>
-                            <button id="double-page" title="Double Page"><i class="fas fa-copy"></i></button>
-                        </div>
-                        <div class="page-fit-container">
-                            <button id="fit-width" class="active" title="Fit to Width">Fit Width</button>
-                            <button id="fit-height" title="Fit to Height">Fit Height</button>
-                            <button id="fit-both" title="Fit to Screen">Fit Both</button>
-                        </div>
                         <div class="reading-direction">
                             <button id="direction-ltr" class="active" title="Left to Right">LTR</button>
                             <button id="direction-rtl" title="Right to Left">RTL</button>
                         </div>
                     </div>
                 </div>
-                <div class="reader-header">
-                    <div class="reader-controls">
-                        <button id="prev-chapter"><i class="fas fa-chevron-left"></i> Previous Chapter</button>
-                        <button id="prev-btn"><i class="fas fa-arrow-left"></i> Previous Page</button>
-                        <button id="next-btn">Next Page <i class="fas fa-arrow-right"></i></button>
-                        <button id="next-chapter">Next Chapter <i class="fas fa-chevron-right"></i></button>
-                        <button id="fullscreen-btn" title="Toggle Fullscreen"><i class="fas fa-expand"></i></button>
-                        <button id="close-reader"><i class="fas fa-times"></i> Close</button>
-                    </div>
+                <div class="bottom-reader-controls">
+                    <button id="prev-chapter-bottom"><i class="fas fa-chevron-left"></i> Previous Chapter</button>
+                    <button id="next-chapter-bottom">Next Chapter <i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
 
@@ -128,5 +94,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
