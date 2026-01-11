@@ -485,15 +485,6 @@ header h1 i {
     gap: 15px;
 }
 
-#page-info {
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 1rem;
-    background: var(--surface-2);
-    padding: 8px 15px;
-    border-radius: 8px;
-}
-
 /* Bottom Reader Controls */
 .bottom-reader-controls {
     display: flex;

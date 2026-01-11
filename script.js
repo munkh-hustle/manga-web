@@ -431,9 +431,6 @@ function handleKeyboardShortcuts(e) {
 function updatePageInfo() {
     if (!currentChapter || !currentChapter.pages) return;
     
-    document.getElementById('page-info').textContent = 
-        `Page ${currentPage + 1} of ${currentChapter.pages.length}`;
-    
     const hasPrevChapter = currentChapter.id > 1;
     const hasNextChapter = currentChapter.id < currentManga.chaptersList.length;
     
