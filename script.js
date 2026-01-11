@@ -35,6 +35,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+// Add scroll to top functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+        
+        // Initialize hidden
+        scrollTopBtn.style.display = 'none';
+    }
+});
+
 async function loadMangaData() {
     try {
         const response = await fetch('data/manga-data.json');
@@ -231,13 +254,26 @@ function loadChapterPages(pages) {
     const mangaPages = document.getElementById('manga-pages');
     mangaPages.innerHTML = '';
     
+    // Convert pages object to array if needed
+    let pageArray;
+    if (Array.isArray(pages)) {
+        pageArray = pages;
+    } else if (typeof pages === 'object') {
+        // Convert object to array sorted by keys
+        pageArray = Object.entries(pages)
+            .sort(([a], [b]) => parseInt(a) - parseInt(b))
+            .map(([key, value]) => value);
+    } else {
+        pageArray = [];
+    }
+    
     let loadedCount = 0;
-    const totalPages = pages.length;
+    const totalPages = pageArray.length;
     
     // Add a class to indicate loading is happening
     mangaPages.classList.add('loading-pages');
     
-    pages.forEach((page, index) => {
+    pageArray.forEach((page, index) => {
         // Create container for each page
         const pageContainer = document.createElement('div');
         pageContainer.className = 'manga-page-container';
@@ -323,7 +359,7 @@ function loadChapterPages(pages) {
         mangaPages.appendChild(pageContainer);
     });
     
-    if (pages.length === 0) {
+    if (pageArray.length === 0) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'image-error';
         errorDiv.innerHTML = `
@@ -331,6 +367,11 @@ function loadChapterPages(pages) {
             <p>No pages available for this chapter</p>
         `;
         mangaPages.appendChild(errorDiv);
+    }
+    
+    // Update the total pages for this chapter
+    if (currentChapter) {
+        currentChapter.totalPages = pageArray.length;
     }
 }
 
@@ -431,6 +472,26 @@ function handleKeyboardShortcuts(e) {
 function updatePageInfo() {
     if (!currentChapter || !currentChapter.pages) return;
     
+    // Get the total number of pages
+    let totalPages;
+    if (Array.isArray(currentChapter.pages)) {
+        totalPages = currentChapter.pages.length;
+    } else if (typeof currentChapter.pages === 'object') {
+        totalPages = Object.keys(currentChapter.pages).length;
+    } else {
+        totalPages = 0;
+    }
+    
+    // Create or update page counter
+    let pageCounter = document.querySelector('.page-counter');
+    if (!pageCounter) {
+        pageCounter = document.createElement('div');
+        pageCounter.className = 'page-counter';
+        document.body.appendChild(pageCounter);
+    }
+    
+    pageCounter.textContent = `Page ${currentPage + 1} of ${totalPages}`;
+    
     const hasPrevChapter = currentChapter.id > 1;
     const hasNextChapter = currentChapter.id < currentManga.chaptersList.length;
     
@@ -439,6 +500,7 @@ function updatePageInfo() {
     document.getElementById('prev-chapter-bottom').disabled = !hasPrevChapter;
     document.getElementById('next-chapter-bottom').disabled = !hasNextChapter;
 }
+
 
 function scrollToPage() {
     const mangaPages = document.getElementById('manga-pages');
